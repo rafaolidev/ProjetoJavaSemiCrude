@@ -1,0 +1,15 @@
+package com.rafaoli.service;
+
+import com.rafaoli.service.serviceImplementation.PessoaServiceImplementation;
+
+public class PessoaService {
+	
+	private PessoaServiceImplementation pessoaService;
+
+	public PessoaService(PessoaServiceImplementation pessoaService) {
+		this.pessoaService = pessoaService;
+	}
+	
+	
+
+}

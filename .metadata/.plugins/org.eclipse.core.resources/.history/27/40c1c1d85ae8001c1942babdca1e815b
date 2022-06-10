@@ -1,0 +1,32 @@
+package com.rafaoli.repository.repositoryImpl;
+
+import com.rafaoli.domain.Pessoa;
+import com.rafaoli.repository.PessoaRepository;
+
+public class PessoaRepositoryImplementation implements PessoaRepository{
+
+	@Override
+	public void inserirContato(Pessoa p_pessoa) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deletarContato(Pessoa p_pessoa) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void alterarContato(Pessoa p_pessoa) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void listarContatos() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

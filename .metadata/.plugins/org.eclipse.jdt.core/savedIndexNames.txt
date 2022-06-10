@@ -1,0 +1,4 @@
+INDEX VERSION 1.131+C:\Git_Pessoal\Projetos_Caridade\forks\ProjetoJavaSemiCrude\.metadata\.plugins\org.eclipse.jdt.core
+974308249.index
+1865797976.index
+1980962581.index

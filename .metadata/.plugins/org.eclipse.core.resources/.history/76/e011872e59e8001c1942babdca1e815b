@@ -1,0 +1,9 @@
+package com.rafaoli.repository;
+
+import com.rafaoli.domain.Pessoa;
+
+public interface PessoaRepository {
+	
+	void inserirPessoa(Pessoa p_pessoa);
+
+}
