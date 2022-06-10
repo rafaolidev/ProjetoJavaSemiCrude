@@ -1,0 +1,10 @@
+package com.rafaoli.service;
+
+import com.rafaoli.repository.IPessoaRepository;
+
+public class PessoaService {
+	
+
+	
+
+}
