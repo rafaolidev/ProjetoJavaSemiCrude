@@ -1,0 +1,16 @@
+package com.rafaoli.service;
+
+import com.rafaoli.repository.PessoaRepository;
+
+public class PessoaService {
+	
+	private PessoaRepository pessoaRepository;
+
+	public PessoaService(PessoaRepository pessoaRepository) {
+		this.pessoaRepository = pessoaRepository;
+	}
+	
+	
+	
+
+}

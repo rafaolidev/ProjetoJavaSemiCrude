@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="java.util.HashMap"/>
+    <fullyQualifiedTypeName name="com.rafaoli.repository.PessoaRepository"/>
+    <fullyQualifiedTypeName name="com.rafaoli.service.serviceImplementation.PessoaServiceImplementation"/>
+    <fullyQualifiedTypeName name="com.rafaoli.repository.IPessoaRepository"/>
+    <fullyQualifiedTypeName name="com.rafaoli.dbsimulator.DBSimulator"/>
+    <fullyQualifiedTypeName name="com.rafaoli.repository.repositoryImpl.PessoaRepositoryImpl"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+</qualifiedTypeNameHistroy>
