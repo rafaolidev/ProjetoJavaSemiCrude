@@ -1,7 +1,0 @@
-package com.rafaoli.repository;
-
-public interface PessoaRepository {
-	
-	void inserirPessoa
-
-}

@@ -1,7 +1,0 @@
-package com.rafaoli.service.serviceImplementation;
-
-import com.rafaoli.repository.PessoaRepository;
-
-public class PessoaServiceImplementation implements PessoaRepository{
-
-}
