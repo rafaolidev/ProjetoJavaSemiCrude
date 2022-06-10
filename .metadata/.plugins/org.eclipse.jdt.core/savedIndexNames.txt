@@ -1,4 +1,0 @@
-INDEX VERSION 1.131+C:\Git_Pessoal\Projetos_Caridade\forks\teste2\.metadata\.plugins\org.eclipse.jdt.core
-1865797976.index
-1980962581.index
-974308249.index
