@@ -1,5 +1,6 @@
 package com.rafaoli.service;
 
+import com.rafaoli.domain.Pessoa;
 import com.rafaoli.repository.repositoryImpl.PessoaRepositoryImpl;
 
 public class PessoaService {
@@ -12,6 +13,10 @@ public class PessoaService {
 	
 	public void listarContatos() {
 		pessoaRepositoryImpl.listarContatos();
+	}
+	
+	public void inserirContato(Pessoa p_pessoa) {
+		pessoaRepositoryImpl.inserirContato(p_pessoa);
 	}
 
 
