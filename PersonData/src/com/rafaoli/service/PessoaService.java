@@ -14,12 +14,14 @@ public class PessoaService {
 		this.pessoaRepositoryImpl = pessoaRepositoryImpl;
 	}
 	
-	public void listarContatos() {
+	public List<Pessoa> listarContatos() {
 		List<Pessoa> listaContatos = pessoaRepositoryImpl.listarContatos();
 		listaContatos
 		.stream()
 		.sorted()
 		.forEach(System.out::println);
+		
+		return listaContatos;
 	}
 	
 	public void inserirContato( Pessoa p_pessoa ) {

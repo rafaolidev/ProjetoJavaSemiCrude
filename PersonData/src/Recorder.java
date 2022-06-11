@@ -1,12 +1,14 @@
 import java.util.Scanner;
 
 import com.rafaoli.domain.Pessoa;
+import com.rafaoli.graphics.AppScreen;
 import com.rafaoli.repository.repositoryImpl.PessoaRepositoryImpl;
 import com.rafaoli.service.PessoaService;
 
 public class Recorder {	
 	
 	public static void main(String[]args) {
+		AppScreen appScreen = new AppScreen();
 		PessoaRepositoryImpl pessoaRepositoryImpl = new PessoaRepositoryImpl();
 		
 		PessoaService pessoaService = new PessoaService(pessoaRepositoryImpl);
@@ -24,6 +26,8 @@ public class Recorder {
 		pessoaService.inserirContato(p2);
 
 		pessoaService.listarContatos();
+		
+		appScreen.construirGUI();
 	}
 
 }
