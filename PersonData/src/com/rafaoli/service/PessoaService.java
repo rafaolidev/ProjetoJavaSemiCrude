@@ -16,7 +16,10 @@ public class PessoaService {
 	
 	public void listarContatos() {
 		List<Pessoa> listaContatos = pessoaRepositoryImpl.listarContatos();
-		listaContatos.stream().sorted().forEach(System.out::println);
+		listaContatos
+		.stream()
+		.sorted()
+		.forEach(System.out::println);
 	}
 	
 	public void inserirContato( Pessoa p_pessoa ) {
