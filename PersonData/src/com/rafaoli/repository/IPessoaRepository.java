@@ -6,11 +6,11 @@ import com.rafaoli.domain.Pessoa;
 
 public interface IPessoaRepository {
 	
-	void inserirContato(Pessoa p_pessoa);
+	void inserirContato( Pessoa p_pessoa );
 	
-	void deletarContato(Pessoa p_pessoa);
+	void deletarContato( Pessoa p_pessoa );
 	
-	void alterarContato(Pessoa p_pessoa);
+	void alterarContato( Pessoa p_pessoa, int p_index );
 	
 	void listarContatos();
 }

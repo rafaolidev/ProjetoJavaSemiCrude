@@ -17,12 +17,8 @@ public class PessoaRepositoryImpl implements IPessoaRepository{
 	}
 
 	@Override
-	public void alterarContato(Pessoa p_pessoa) {
-		DBSimulator.LISTA_DE_PESSOA.forEach( pessoa ->{
-			if( pessoa.getRg().equals( p_pessoa.getRg() ) ) {				
-				pessoa = p_pessoa;
-			}
-		});
+	public void alterarContato(Pessoa p_pessoa, int p_index) {
+		DBSimulator.LISTA_DE_PESSOA.set(p_index, p_pessoa);			
 	}
 
 	@Override
