@@ -12,5 +12,5 @@ public interface IPessoaRepository {
 	
 	void alterarContato( Pessoa p_pessoa, int p_index );
 	
-	void listarContatos();
+	List<Pessoa> listarContatos();
 }

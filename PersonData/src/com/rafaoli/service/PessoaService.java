@@ -1,5 +1,7 @@
 package com.rafaoli.service;
 
+import java.util.List;
+
 import com.rafaoli.dbsimulator.DBSimulator;
 import com.rafaoli.domain.Pessoa;
 import com.rafaoli.repository.repositoryImpl.PessoaRepositoryImpl;
@@ -13,7 +15,8 @@ public class PessoaService {
 	}
 	
 	public void listarContatos() {
-		pessoaRepositoryImpl.listarContatos();
+		List<Pessoa> listaContatos = pessoaRepositoryImpl.listarContatos();
+		listaContatos.stream().sorted().forEach(System.out::println);
 	}
 	
 	public void inserirContato( Pessoa p_pessoa ) {
