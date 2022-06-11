@@ -3,7 +3,7 @@ package com.rafaoli.domain;
 import java.util.Date;
 import java.util.HashMap;
 
-public class Pessoa {
+public class Pessoa implements Comparable<Pessoa> {
 	
 	private String nome;
 	private String rg;
@@ -50,8 +50,12 @@ public class Pessoa {
 	}
 	@Override
 	public String toString() {
-		return "Pessoa [nome=" + nome + ", rg=" + rg + ", data_nascimento=" + data_nascimento + ", email=" + email
-				+ ", telefone=" + telefone + ", endereco=" + endereco + "]";
+		return "Pessoa [ nome=" + nome + ", rg=" + rg + ", data_nascimento=" + data_nascimento + ", email=" + email
+				+ ", telefone=" + telefone + ", endereco=" + endereco + " ]";
+	}
+	@Override
+	public int compareTo(Pessoa p_pessoa) {
+		return this.nome.compareTo( p_pessoa.nome );
 	}
 
 	

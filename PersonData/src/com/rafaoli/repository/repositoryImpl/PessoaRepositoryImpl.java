@@ -1,5 +1,7 @@
 package com.rafaoli.repository.repositoryImpl;
 
+import java.util.List;
+
 import com.rafaoli.dbsimulator.DBSimulator;
 import com.rafaoli.domain.Pessoa;
 import com.rafaoli.repository.IPessoaRepository;
@@ -17,17 +19,13 @@ public class PessoaRepositoryImpl implements IPessoaRepository{
 	}
 
 	@Override
-	public void alterarContato(Pessoa p_pessoa) {
-		DBSimulator.LISTA_DE_PESSOA.forEach( pessoa ->{
-			if( pessoa.getRg().equals( p_pessoa.getRg() ) ) {				
-				pessoa = p_pessoa;
-			}
-		});
+	public void alterarContato(Pessoa p_pessoa, int p_index) {
+		DBSimulator.LISTA_DE_PESSOA.set(p_index, p_pessoa);			
 	}
 
 	@Override
-	public void listarContatos() {				
-		DBSimulator.LISTA_DE_PESSOA.stream().sorted().forEach(System.out::println);
+	public List<Pessoa> listarContatos() {				
+		return DBSimulator.LISTA_DE_PESSOA;
 	}
 
 }

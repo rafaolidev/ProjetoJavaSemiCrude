@@ -13,11 +13,16 @@ public class Recorder {
 		
 		Pessoa p = new Pessoa();
 		
-		p.setNome("Teste");
+		p.setNome("Bruno");
 		p.setRg("55555555");
+		Pessoa p2 = new Pessoa();
+		
+		p2.setNome("Ana");
+		p2.setRg("555566666");
 		
 		pessoaService.inserirContato(p);
-		
+		pessoaService.inserirContato(p2);
+
 		pessoaService.listarContatos();
 	}
 
