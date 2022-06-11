@@ -7,7 +7,6 @@ import com.rafaoli.service.PessoaService;
 public class Recorder {	
 	
 	public static void main(String[]args) {
-		Scanner scan = new Scanner( System.in );
 		PessoaRepositoryImpl pessoaRepositoryImpl = new PessoaRepositoryImpl();
 		
 		PessoaService pessoaService = new PessoaService(pessoaRepositoryImpl);
