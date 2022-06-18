@@ -18,8 +18,7 @@ public class PessoaService {
 		List<Pessoa> listaContatos = pessoaRepositoryImpl.listarContatos();
 		listaContatos
 		.stream()
-		.sorted()
-		.forEach(System.out::println);
+		.sorted();
 		
 		return listaContatos;
 	}
@@ -28,19 +27,13 @@ public class PessoaService {
 		pessoaRepositoryImpl.inserirContato( p_pessoa );
 	}
 	
-	public void removerContato( Pessoa p_pessoa ) {
-		pessoaRepositoryImpl.deletarContato( p_pessoa );
+	public void deletarContato( int p_id ) {
+		pessoaRepositoryImpl.deletarContato( p_id );
 	}
 	
-	public void alterarContato( Pessoa p_pessoa  ) {
-		int indexPessoa = 0; 
-		DBSimulator.LISTA_DE_PESSOA.forEach( pessoa ->{
-			if( pessoa.getRg().equals( p_pessoa.getRg() ) ) {
-				// TO DO 
- 			}			
-		});
+	public void alterarContato( Pessoa p_pessoa, int p_id  ) {
 		
-		pessoaRepositoryImpl.alterarContato(p_pessoa, indexPessoa);
+		pessoaRepositoryImpl.alterarContato(p_pessoa, p_id);
 		
 	}
 }

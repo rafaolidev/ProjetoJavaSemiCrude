@@ -1,17 +1,25 @@
 package com.rafaoli.graphics;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
+import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
-import javax.swing.ListModel;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import com.rafaoli.domain.Pessoa;
 import com.rafaoli.graphics.actionListeners.AddBtnListener;
+import com.rafaoli.graphics.actionListeners.AddListener;
+import com.rafaoli.graphics.actionListeners.DelBtnListener;
 import com.rafaoli.repository.repositoryImpl.PessoaRepositoryImpl;
 import com.rafaoli.service.PessoaService;
 
@@ -20,33 +28,44 @@ public class AppScreen extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JToolBar menuOpcoes = new JToolBar();
 	private JList<Pessoa> listaContatos;
+	JButton addContato = new JButton("Adicionar Contato") ;
+	JButton altContato = new JButton("Alterar Contato");
+	JButton delContato = new JButton("Remover Contato");
+	JList<Pessoa> JlistaContato;
+	private PessoaService pessoaService = new PessoaService( new PessoaRepositoryImpl() );
+
 	
 	public AppScreen() {
 		super("Person Data Visualizer");
 	}
 	
 	public void construirGUI() {
+		listarContatosGUI();
 		construirMenuOpcoes();
-		//listarContatosGUI();
+
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);    
-        this.setSize( 500, 500 );
+        this.setSize( 400, 400);
         this.setVisible(true);
         this.setLocationRelativeTo(null);
 	}
 	
 	public void construirMenuOpcoes() {
-		JButton addContato = new JButton("Adicionar Contato") ;
-		JButton altContato = new JButton("Alterar Contato");
-		JButton delContato = new JButton("Remover Contato");
+		
+		DelBtnListener delListener = new DelBtnListener(pessoaService,this);
+		AddListener addListener = new AddListener(pessoaService,this);
+		delListener.setIndex( JlistaContato.getSelectedIndex() + 1 );
 		
 		menuOpcoes.add( addContato );
-		addContato.addActionListener( new AddBtnListener() );
-		
+		addContato.addActionListener( addListener );
+		delContato.addActionListener( delListener );
+		delContato.setEnabled(false);
+		altContato.setEnabled(false);
 		
 		menuOpcoes.add( altContato );
 		menuOpcoes.add( delContato );
 		add(menuOpcoes, BorderLayout.NORTH);
+		
 	}
 	
 	public void listarContatosGUI() {
@@ -54,11 +73,65 @@ public class AppScreen extends JFrame {
 		 * Em obras . . . 
 		 * 
 		 * */
-		List<Pessoa> listaPessoas =  new PessoaService( new PessoaRepositoryImpl() ).listarContatos();
+		List<Pessoa> listaPessoas = pessoaService.listarContatos();
 		
-		JList<Pessoa> listaContato = new JList<Pessoa>(listaPessoas.toArray( new Pessoa[ listaPessoas.size() ] ) );
-		this.add(listaContato);
+		JlistaContato = new JList<Pessoa>(listaPessoas.toArray( new Pessoa[ listaPessoas.size() ] ) );
+		//JList<Pessoa> JlistaContato = new JList<Pessoa>(listaPessoas.toArray( new Pessoa[ listaPessoas.size() ] ) );
+		JlistaContato.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		JlistaContato.setLayoutOrientation(JList.HORIZONTAL_WRAP);
+		
+		JlistaContato.addMouseListener( new MouseAdapter() {
+			public void mousePressed( MouseEvent mouseEvent ) {
+				 if (mouseEvent.getClickCount() == 2) {
+					 addContato.doClick(); 
+	                }
+			}
+		});
+		
+		JlistaContato.addListSelectionListener(new ListSelectionListener() {
+			
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				  if (e.getValueIsAdjusting() == false) {
+
+				        if (JlistaContato.getSelectedIndex() == -1) {
+				            delContato.setEnabled(false);
+				            altContato.setEnabled(false);
+				        } else {
+				        	delContato.setEnabled(true);
+				        	altContato.setEnabled(true);
+				        }
+				    }
+				
+			}
+		});
+		
+		JScrollPane listScroller = new JScrollPane(JlistaContato);
+		listScroller.setPreferredSize(new Dimension(250, 80));
+		
+		this.add(JlistaContato);
 
 	}
+	
+	public void refreshJList() {
+		DefaultListModel<Pessoa> listModelPessoa = new DefaultListModel<>();
+		listModelPessoa.addAll(pessoaService.listarContatos());
+		JlistaContato.setModel( listModelPessoa );;
+	}
 
+	public JList<Pessoa> getListaContatos() {
+		return listaContatos;
+	}
+
+	public PessoaService getPessoaService() {
+		return pessoaService;
+	}
+
+	public JList<Pessoa> getJlistaContato() {
+		return JlistaContato;
+	}
+
+	
+	
+	
 }

@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 import com.rafaoli.domain.Pessoa;
 import com.rafaoli.graphics.AppScreen;
 import com.rafaoli.repository.repositoryImpl.PessoaRepositoryImpl;
@@ -25,7 +23,6 @@ public class Recorder {
 		pessoaService.inserirContato(p);
 		pessoaService.inserirContato(p2);
 
-		pessoaService.listarContatos();
 		
 		appScreen.construirGUI();
 	}
