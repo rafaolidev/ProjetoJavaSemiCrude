@@ -1,5 +1,6 @@
 package com.rafaoli.domain;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -7,7 +8,7 @@ public class Pessoa implements Comparable<Pessoa> {
 	
 	private String nome;
 	private String rg;
-	private Date data_nascimento;
+	private LocalDate data_nascimento;
 	private HashMap<String, String> email;
 	private HashMap<String, String> telefone;
 	private HashMap<Endereco, String> endereco;
@@ -24,10 +25,10 @@ public class Pessoa implements Comparable<Pessoa> {
 	public void setRg(String rg) {
 		this.rg = rg;
 	}
-	public Date getData_nascimento() {
+	public LocalDate getData_nascimento() {
 		return data_nascimento;
 	}
-	public void setData_nascimento(Date data_nascimento) {
+	public void setData_nascimento(LocalDate data_nascimento) {
 		this.data_nascimento = data_nascimento;
 	}
 	public HashMap<String, String> getEmail() {

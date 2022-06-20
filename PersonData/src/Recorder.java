@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.HashMap;
 
 import com.rafaoli.domain.Endereco;
@@ -16,9 +18,10 @@ public class Recorder {
 		
 		Pessoa p = new Pessoa();
 		
-		p.setNome("Bruno");
+		p.setNome("contatoTeste");
 		p.setRg("55555555");
-		String email = "bruno@teste.com";
+		p.setData_nascimento( LocalDate.now() );
+		String email = "contatoTeste@teste.com";
 		String opcaoEmail = "Principal";
 		HashMap<String, String> emailMap = new HashMap<String,String>();		
 
@@ -46,19 +49,8 @@ public class Recorder {
 		p.setEndereco(enderecoMap);
 		p.setTelefone( telefoneMap );
 		p.setEmail(emailMap);
-		
-		
-		
-		
-		Pessoa p2 = new Pessoa();
-		
-		p2.setNome("Ana");
-		p2.setRg("555566666");
-		
-		pessoaService.inserirContato(p);
-		pessoaService.inserirContato(p2);
-
-		
+				
+		pessoaService.inserirContato(p);		
 		appScreen.construirGUI();
 	}
 

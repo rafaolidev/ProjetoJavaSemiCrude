@@ -2,6 +2,7 @@ package com.rafaoli.graphics.actionListeners;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -28,7 +29,12 @@ public class AddBtnAddInternalListener implements ActionListener {
 		
 		novaPessoa.setNome( addFrame.getFieldName().getText() );
 		novaPessoa.setRg( addFrame.getFieldRG().getText() );
-		novaPessoa.setData_nascimento( new Date() );
+		
+		int ano = Integer.parseInt( addFrame.getFieldAno().getText() );
+		int mes = Integer.parseInt( addFrame.getFieldMes().getText() );
+		int dia = Integer.parseInt( addFrame.getFieldDia().getText() );
+		
+		novaPessoa.setData_nascimento( LocalDate.of( ano, mes, dia ) );
 		
 		HashMap<String, String> emailMap = new HashMap<String,String>();		
 		String email = addFrame.getFieldEmail().getText();
@@ -60,6 +66,7 @@ public class AddBtnAddInternalListener implements ActionListener {
 		
 		pessoaService.inserirContato( novaPessoa );
 		addFrame.getAppScreen().refreshJList();
+		addFrame.encerrarJFrame();
 	}
 	
 

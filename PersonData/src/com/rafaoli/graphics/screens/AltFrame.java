@@ -1,12 +1,14 @@
 package com.rafaoli.graphics.screens;
 
 import java.awt.BorderLayout;
+import java.awt.event.WindowEvent;
 import java.util.HashMap;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -42,6 +44,9 @@ public class AltFrame extends JFrame {
 	private JTextField fieldBairro;
 	private JTextField fieldCEP;
 	private JTextField fieldCidade;
+	private JTextField fieldDia;
+	private JTextField fieldMes;
+	private JTextField fieldAno;
 
 	public AltFrame( PessoaService p_pessoaService, AppScreen p_appScreen ) {
 		super("Alterar Contato");
@@ -75,7 +80,7 @@ public class AltFrame extends JFrame {
 		contentPane.add(fieldRG);
 		
 		JLabel lblDtNascimento = new JLabel("Data de Nascimento");
-		lblDtNascimento.setBounds(24, 102, 103, 20);
+		lblDtNascimento.setBounds(24, 102, 127, 20);
 		contentPane.add(lblDtNascimento);
 		
 		JLabel lblEmail = new JLabel("E-Mail");
@@ -183,11 +188,43 @@ public class AltFrame extends JFrame {
 		comboEndereco.setBounds(104, 204, 148, 22);
 		contentPane.add(comboEndereco);
 		btnCancelar.addActionListener( new AddBtnCancelListener( this ) );
+		
+		fieldDia = new JTextField();
+		fieldDia.setBounds(177, 102, 46, 20);
+		contentPane.add(fieldDia);
+		fieldDia.setColumns(10);
+		
+		fieldMes = new JTextField();
+		fieldMes.setColumns(10);
+		fieldMes.setBounds(257, 102, 30, 20);
+		contentPane.add(fieldMes);
+		
+		fieldAno = new JTextField();
+		fieldAno.setColumns(10);
+		fieldAno.setBounds(341, 102, 60, 20);
+		contentPane.add(fieldAno);
+		
+		JLabel lblDia = new JLabel("Dia");
+		lblDia.setBounds(149, 105, 30, 14);
+		contentPane.add(lblDia);
+		
+		JLabel lblMes = new JLabel("M\u00EAs");
+		lblMes.setBounds(233, 105, 30, 14);
+		contentPane.add(lblMes);
+		
+		JLabel lblAno = new JLabel("Ano");
+		lblAno.setBounds(304, 105, 30, 14);
+		contentPane.add(lblAno);
+		btnCancelar.addActionListener( new AddBtnCancelListener( this ) );
 	}
 	
 	public void carregarDados( Pessoa p_pessoa ) {
 		fieldName.setText( p_pessoa.getNome() );
 		fieldRG.setText( p_pessoa.getRg() );
+		
+		fieldDia.setText( ""+p_pessoa.getData_nascimento().getDayOfMonth() );
+		fieldMes.setText( ""+p_pessoa.getData_nascimento().getMonthValue() );
+		fieldAno.setText( ""+p_pessoa.getData_nascimento().getYear());
 		
 		p_pessoa.getEmail().entrySet().forEach(entry->{
 			fieldEmail.setText( entry.getKey() );
@@ -210,6 +247,17 @@ public class AltFrame extends JFrame {
 		});
 		
 	}
+	
+	public void encerrarJFrame() {
+		int decision = JOptionPane.showConfirmDialog(this, "Operação concluída","",JOptionPane.DEFAULT_OPTION,JOptionPane.INFORMATION_MESSAGE);
+		
+		if( decision == JOptionPane.YES_OPTION ) {
+			
+			this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+			
+ 		}
+	}
+	
 	public JTextField getFieldName() {
 		return fieldName;
 	}
@@ -286,11 +334,21 @@ public class AltFrame extends JFrame {
 		return fieldCidade;
 	}
 
-
 	public void setFieldCidade(JTextField fieldCidade) {
 		this.fieldCidade = fieldCidade;
 	}
+	
+	public JTextField getFieldDia() {
+		return fieldDia;
+	}
 
+	public JTextField getFieldMes() {
+		return fieldMes;
+	}
+
+	public JTextField getFieldAno() {
+		return fieldAno;
+	}
 	
 	public AppScreen getAppScreen() {
 		return appScreen;
