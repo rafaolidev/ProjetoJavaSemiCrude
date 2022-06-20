@@ -1,5 +1,8 @@
 package com.rafaoli.graphics.screens;
 
+import java.awt.BorderLayout;
+import java.util.HashMap;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -8,15 +11,17 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import com.rafaoli.domain.Pessoa;
 import com.rafaoli.graphics.AppScreen;
 import com.rafaoli.graphics.actionListeners.AddBtnAddInternalListener;
 import com.rafaoli.graphics.actionListeners.AddBtnCancelListener;
+import com.rafaoli.graphics.actionListeners.AltBtnInternalListener;
 import com.rafaoli.service.PessoaService;
 import com.rafaoli.utils.Constantes;
 /*
- * Essa classe foi construída com o auxílio do plug-in WindowTool
+ * Essa classe foi construído com o auxílio do plug-in WindowTool
  * */
-public class AddFrame extends JFrame {
+public class AltFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField fieldName;
@@ -27,9 +32,10 @@ public class AddFrame extends JFrame {
 	private JComboBox comboEmail;
 	private JComboBox comboTelefone;
 	private JComboBox comboEndereco;
-	
+
 	private PessoaService pessoaService;
-	private AppScreen appScreen;	
+	private AppScreen appScreen;
+	
 	private JTextField fieldLogradouro;
 	private JTextField fieldNumero;
 	private JTextField fieldComplemento;
@@ -37,8 +43,8 @@ public class AddFrame extends JFrame {
 	private JTextField fieldCEP;
 	private JTextField fieldCidade;
 
-	public AddFrame( PessoaService p_pessoaService, AppScreen p_appScreen ) {
-		super("Adicionar Contato");
+	public AltFrame( PessoaService p_pessoaService, AppScreen p_appScreen ) {
+		super("Alterar Contato");
 		pessoaService = p_pessoaService;
 		appScreen = p_appScreen;
 		
@@ -54,7 +60,7 @@ public class AddFrame extends JFrame {
 		
 		fieldName = new JTextField();
 		fieldName.setToolTipText("Digite o nome aqui!");
-		fieldName.setBounds(67, 43, 267, 20);
+		fieldName.setBounds(57, 43, 267, 20);
 		contentPane.add(fieldName);
 		fieldName.setColumns(10);
 		
@@ -65,7 +71,7 @@ public class AddFrame extends JFrame {
 		fieldRG = new JTextField();
 		fieldRG.setToolTipText("Digite o RG aqui!");
 		fieldRG.setColumns(10);
-		fieldRG.setBounds(67, 74, 267, 20);
+		fieldRG.setBounds(57, 74, 267, 20);
 		contentPane.add(fieldRG);
 		
 		JLabel lblDtNascimento = new JLabel("Data de Nascimento");
@@ -77,13 +83,13 @@ public class AddFrame extends JFrame {
 		contentPane.add(lblEmail);
 		
 		comboEmail = new JComboBox(Constantes.OPCOES_EMAIL);
-		comboEmail.setBounds(358, 136, 114, 22);
+		comboEmail.setBounds(290, 136, 111, 22);
 		contentPane.add(comboEmail);
 		
 		fieldEmail = new JTextField();
 		fieldEmail.setToolTipText("Digite o nome aqui!");
 		fieldEmail.setColumns(10);
-		fieldEmail.setBounds(67, 133, 267, 20);
+		fieldEmail.setBounds(57, 137, 213, 20);
 		contentPane.add(fieldEmail);
 		
 		JLabel lblTelefone = new JLabel("Telefone");
@@ -97,17 +103,17 @@ public class AddFrame extends JFrame {
 		fieldTelefone = new JTextField();
 		fieldTelefone.setToolTipText("Digite o telefone aqui!");
 		fieldTelefone.setColumns(10);
-		fieldTelefone.setBounds(67, 170, 267, 20);
+		fieldTelefone.setBounds(67, 170, 213, 20);
 		contentPane.add(fieldTelefone);
 		
 		comboTelefone = new JComboBox( Constantes.OPCOES_TELEFONE );
-		comboTelefone.setBounds(358, 169, 114, 22);
+		comboTelefone.setBounds(290, 169, 111, 22);
 		contentPane.add(comboTelefone);
 		
-		JButton btnAdicionar = new JButton("Adicionar");
-		btnAdicionar.setBounds(137, 441, 89, 23);
-		contentPane.add(btnAdicionar);
-		btnAdicionar.addActionListener( new AddBtnAddInternalListener( p_pessoaService, this ) );
+		JButton btnAtualizar = new JButton("Atualizar");
+		btnAtualizar.setBounds(137, 441, 89, 23);
+		contentPane.add( btnAtualizar );
+		btnAtualizar.addActionListener( new AltBtnInternalListener( p_pessoaService, this, appScreen ) );
 		
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.setBounds(245, 441, 89, 23);
@@ -174,12 +180,36 @@ public class AddFrame extends JFrame {
 		contentPane.add(fieldCidade);
 		
 		comboEndereco = new JComboBox( Constantes.OPCOES_ENDERECO );
-		comboEndereco.setBounds(104, 204, 140, 22);
+		comboEndereco.setBounds(104, 204, 148, 22);
 		contentPane.add(comboEndereco);
 		btnCancelar.addActionListener( new AddBtnCancelListener( this ) );
 	}
-
-
+	
+	public void carregarDados( Pessoa p_pessoa ) {
+		fieldName.setText( p_pessoa.getNome() );
+		fieldRG.setText( p_pessoa.getRg() );
+		
+		p_pessoa.getEmail().entrySet().forEach(entry->{
+			fieldEmail.setText( entry.getKey() );
+			comboEmail.setSelectedItem( entry.getValue() );
+		});
+		
+		p_pessoa.getTelefone().entrySet().forEach(entry->{
+			fieldTelefone.setText( entry.getKey() );
+			comboTelefone.setSelectedItem( entry.getValue() );
+		});
+		
+		p_pessoa.getEndereco().entrySet().forEach(entry->{
+			fieldLogradouro.setText( entry.getKey().getLogradouro() );
+			fieldCEP.setText( entry.getKey().getCep() );
+			fieldCidade.setText( entry.getKey().getCidade() );
+			fieldBairro.setText( entry.getKey().getBairro() );
+			fieldComplemento.setText( entry.getKey().getComplemento() );
+			fieldNumero.setText( entry.getKey().getNumero() );
+			comboEndereco.setSelectedItem( entry.getValue() );
+		});
+		
+	}
 	public JTextField getFieldName() {
 		return fieldName;
 	}
@@ -225,16 +255,17 @@ public class AddFrame extends JFrame {
 		return fieldComplemento;
 	}
 
-
 	public void setFieldComplemento(JTextField fieldComplemento) {
 		this.fieldComplemento = fieldComplemento;
 	}
-
-
+	
 	public JTextField getFieldBairro() {
 		return fieldBairro;
 	}
-
+	
+	public JTextField getFieldNumero() {
+		return fieldNumero;
+	}
 
 	public void setFieldBairro(JTextField fieldBairro) {
 		this.fieldBairro = fieldBairro;
@@ -260,16 +291,7 @@ public class AddFrame extends JFrame {
 		this.fieldCidade = fieldCidade;
 	}
 
-
-	public void setFieldEmail(JTextField fieldEmail) {
-		this.fieldEmail = fieldEmail;
-	}
-
-	public JTextField getFieldNumero() {
-		return fieldNumero;
-	}
-
-
+	
 	public AppScreen getAppScreen() {
 		return appScreen;
 	}

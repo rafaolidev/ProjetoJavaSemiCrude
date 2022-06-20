@@ -10,7 +10,7 @@ public class Pessoa implements Comparable<Pessoa> {
 	private Date data_nascimento;
 	private HashMap<String, String> email;
 	private HashMap<String, String> telefone;
-	private HashMap<String, String> endereco;
+	private HashMap<Endereco, String> endereco;
 	
 	public String getNome() {
 		return nome;
@@ -42,10 +42,10 @@ public class Pessoa implements Comparable<Pessoa> {
 	public void setTelefone(HashMap<String, String> telefone) {
 		this.telefone = telefone;
 	}
-	public HashMap<String, String> getEndereco() {
+	public HashMap<Endereco, String> getEndereco() {
 		return endereco;
 	}
-	public void setEndereco(HashMap<String, String> endereco) {
+	public void setEndereco(HashMap<Endereco, String> endereco) {
 		this.endereco = endereco;
 	}
 	@Override

@@ -35,6 +35,7 @@ public class AppScreen extends JFrame {
 	private PessoaService pessoaService = new PessoaService( new PessoaRepositoryImpl() );
 	private DelBtnListener delListener; 
 	private AltBtnListener altListener; 
+	private int indexSelecionado;
 	
 	public AppScreen() {
 		super("Person Data Visualizer");
@@ -100,7 +101,7 @@ public class AppScreen extends JFrame {
 				
 				int indexSelecionado = JlistaContato.getSelectedIndex();
 				delListener.setIndex( indexSelecionado );
-				
+				setIndexSelecionado(indexSelecionado);
 				  if (e.getValueIsAdjusting() == false) {
 
 				        if (JlistaContato.getSelectedIndex() == -1) {
@@ -138,6 +139,16 @@ public class AppScreen extends JFrame {
 	public JList<Pessoa> getJlistaContato() {
 		return JlistaContato;
 	}
+
+	public int getIndexSelecionado() {
+		return indexSelecionado;
+	}
+
+	public void setIndexSelecionado(int indexSelecionado) {
+		this.indexSelecionado = indexSelecionado;
+	}
+	
+	
 
 	
 	
