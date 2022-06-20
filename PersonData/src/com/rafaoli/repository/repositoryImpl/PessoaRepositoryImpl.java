@@ -9,8 +9,8 @@ import com.rafaoli.repository.IPessoaRepository;
 public class PessoaRepositoryImpl implements IPessoaRepository{
 
 	@Override
-	public void inserirContato(Pessoa p_pessoa) {
-		DBSimulator.LISTA_DE_PESSOA.add(p_pessoa);
+	public void inserirContato( Pessoa p_pessoa ) {
+		DBSimulator.LISTA_DE_PESSOA.add( p_pessoa );
 	}
 
 	@Override
@@ -19,8 +19,8 @@ public class PessoaRepositoryImpl implements IPessoaRepository{
 	}
 
 	@Override
-	public void alterarContato(Pessoa p_pessoa, int p_id) {
-		DBSimulator.LISTA_DE_PESSOA.set(p_id, p_pessoa);			
+	public void alterarContato( Pessoa p_pessoa, int p_id ) {
+		DBSimulator.LISTA_DE_PESSOA.set( p_id, p_pessoa );			
 	}
 
 	@Override

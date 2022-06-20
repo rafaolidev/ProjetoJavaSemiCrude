@@ -10,12 +10,12 @@ import com.rafaoli.graphics.AppScreen;
 import com.rafaoli.graphics.screens.AddFrame;
 import com.rafaoli.service.PessoaService;
 
-public class AddInternalListener implements ActionListener {
+public class AddBtnAddInternalListener implements ActionListener {
 
 	private PessoaService pessoaService;
 	private AddFrame addFrame;
 	
-	public AddInternalListener( PessoaService p_pessoaService, AddFrame p_addFrame ) {
+	public AddBtnAddInternalListener( PessoaService p_pessoaService, AddFrame p_addFrame ) {
 		pessoaService = p_pessoaService;
 		addFrame = p_addFrame;
 	}

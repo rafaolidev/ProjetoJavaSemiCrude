@@ -17,8 +17,8 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import com.rafaoli.domain.Pessoa;
-import com.rafaoli.graphics.actionListeners.AddBtnListener;
 import com.rafaoli.graphics.actionListeners.AddListener;
+import com.rafaoli.graphics.actionListeners.AltBtnListener;
 import com.rafaoli.graphics.actionListeners.DelBtnListener;
 import com.rafaoli.repository.repositoryImpl.PessoaRepositoryImpl;
 import com.rafaoli.service.PessoaService;
@@ -33,7 +33,8 @@ public class AppScreen extends JFrame {
 	JButton delContato = new JButton("Remover Contato");
 	JList<Pessoa> JlistaContato;
 	private PessoaService pessoaService = new PessoaService( new PessoaRepositoryImpl() );
-
+	private DelBtnListener delListener; 
+	private AltBtnListener altListener; 
 	
 	public AppScreen() {
 		super("Person Data Visualizer");
@@ -52,15 +53,20 @@ public class AppScreen extends JFrame {
 	
 	public void construirMenuOpcoes() {
 		
-		DelBtnListener delListener = new DelBtnListener(pessoaService,this);
+		delListener = new DelBtnListener(pessoaService,this);
 		AddListener addListener = new AddListener(pessoaService,this);
-		delListener.setIndex( JlistaContato.getSelectedIndex() + 1 );
+		
+		altListener = new AltBtnListener( pessoaService, this );
+		
+		
 		
 		menuOpcoes.add( addContato );
 		addContato.addActionListener( addListener );
+		altContato.addActionListener( altListener );
 		delContato.addActionListener( delListener );
 		delContato.setEnabled(false);
 		altContato.setEnabled(false);
+		
 		
 		menuOpcoes.add( altContato );
 		menuOpcoes.add( delContato );
@@ -76,14 +82,13 @@ public class AppScreen extends JFrame {
 		List<Pessoa> listaPessoas = pessoaService.listarContatos();
 		
 		JlistaContato = new JList<Pessoa>(listaPessoas.toArray( new Pessoa[ listaPessoas.size() ] ) );
-		//JList<Pessoa> JlistaContato = new JList<Pessoa>(listaPessoas.toArray( new Pessoa[ listaPessoas.size() ] ) );
 		JlistaContato.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		JlistaContato.setLayoutOrientation(JList.HORIZONTAL_WRAP);
 		
 		JlistaContato.addMouseListener( new MouseAdapter() {
 			public void mousePressed( MouseEvent mouseEvent ) {
 				 if (mouseEvent.getClickCount() == 2) {
-					 addContato.doClick(); 
+					 altContato.doClick(); 
 	                }
 			}
 		});
@@ -92,6 +97,10 @@ public class AppScreen extends JFrame {
 			
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
+				
+				int indexSelecionado = JlistaContato.getSelectedIndex();
+				delListener.setIndex( indexSelecionado );
+				
 				  if (e.getValueIsAdjusting() == false) {
 
 				        if (JlistaContato.getSelectedIndex() == -1) {
@@ -101,8 +110,7 @@ public class AppScreen extends JFrame {
 				        	delContato.setEnabled(true);
 				        	altContato.setEnabled(true);
 				        }
-				    }
-				
+				    }				
 			}
 		});
 		
@@ -115,8 +123,8 @@ public class AppScreen extends JFrame {
 	
 	public void refreshJList() {
 		DefaultListModel<Pessoa> listModelPessoa = new DefaultListModel<>();
-		listModelPessoa.addAll(pessoaService.listarContatos());
-		JlistaContato.setModel( listModelPessoa );;
+		listModelPessoa.addAll( pessoaService.listarContatos() );
+		JlistaContato.setModel( listModelPessoa );
 	}
 
 	public JList<Pessoa> getListaContatos() {

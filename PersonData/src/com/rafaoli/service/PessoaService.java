@@ -1,6 +1,7 @@
 package com.rafaoli.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.rafaoli.dbsimulator.DBSimulator;
 import com.rafaoli.domain.Pessoa;
@@ -15,12 +16,9 @@ public class PessoaService {
 	}
 	
 	public List<Pessoa> listarContatos() {
-		List<Pessoa> listaContatos = pessoaRepositoryImpl.listarContatos();
-		listaContatos
-		.stream()
-		.sorted();
+		List<Pessoa> listaContatos = pessoaRepositoryImpl.listarContatos();		
 		
-		return listaContatos;
+		return  listaContatos.stream().sorted().collect( Collectors.toList() );
 	}
 	
 	public void inserirContato( Pessoa p_pessoa ) {
@@ -31,9 +29,9 @@ public class PessoaService {
 		pessoaRepositoryImpl.deletarContato( p_id );
 	}
 	
-	public void alterarContato( Pessoa p_pessoa, int p_id  ) {
+	public void alterarContato( Pessoa p_pessoa, int p_index ) {
 		
-		pessoaRepositoryImpl.alterarContato(p_pessoa, p_id);
+		pessoaRepositoryImpl.alterarContato( p_pessoa, p_index );
 		
 	}
 }

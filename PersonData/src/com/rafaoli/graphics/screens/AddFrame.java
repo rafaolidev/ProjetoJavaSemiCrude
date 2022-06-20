@@ -8,7 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import com.rafaoli.graphics.AppScreen;
-import com.rafaoli.graphics.actionListeners.AddInternalListener;
+import com.rafaoli.graphics.actionListeners.AddBtnAddInternalListener;
+import com.rafaoli.graphics.actionListeners.AddBtnCancelListener;
 import com.rafaoli.service.PessoaService;
 import com.rafaoli.utils.Constantes;
 
@@ -34,7 +35,7 @@ public class AddFrame extends JFrame {
 	private AppScreen appScreen;	
 
 	public AddFrame( PessoaService p_pessoaService, AppScreen p_appScreen ) {
-		
+		super("Adicionar Contato");
 		pessoaService = p_pessoaService;
 		appScreen = p_appScreen;
 		
@@ -103,11 +104,12 @@ public class AddFrame extends JFrame {
 		JButton btnAdicionar = new JButton("Adicionar");
 		btnAdicionar.setBounds(109, 253, 89, 23);
 		contentPane.add(btnAdicionar);
-		btnAdicionar.addActionListener( new AddInternalListener( p_pessoaService, this ) );
+		btnAdicionar.addActionListener( new AddBtnAddInternalListener( p_pessoaService, this ) );
 		
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.setBounds(248, 253, 89, 23);
 		contentPane.add(btnCancelar);
+		btnCancelar.addActionListener( new AddBtnCancelListener( this ) );
 	}
 
 
