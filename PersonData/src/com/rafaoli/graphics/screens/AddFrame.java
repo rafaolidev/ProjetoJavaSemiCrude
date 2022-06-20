@@ -89,11 +89,11 @@ public class AddFrame extends JFrame {
 		fieldEmail = new JTextField();
 		fieldEmail.setToolTipText("Digite o nome aqui!");
 		fieldEmail.setColumns(10);
-		fieldEmail.setBounds(67, 133, 267, 20);
+		fieldEmail.setBounds(105, 133, 229, 20);
 		contentPane.add(fieldEmail);
 		
 		JLabel lblTelefone = new JLabel("Telefone");
-		lblTelefone.setBounds(24, 167, 46, 26);
+		lblTelefone.setBounds(24, 167, 70, 26);
 		contentPane.add(lblTelefone);
 		
 		JLabel lblEndereco = new JLabel("Endereco");
@@ -103,7 +103,7 @@ public class AddFrame extends JFrame {
 		fieldTelefone = new JTextField();
 		fieldTelefone.setToolTipText("Digite o telefone aqui!");
 		fieldTelefone.setColumns(10);
-		fieldTelefone.setBounds(67, 170, 267, 20);
+		fieldTelefone.setBounds(105, 170, 229, 20);
 		contentPane.add(fieldTelefone);
 		
 		comboTelefone = new JComboBox( Constantes.OPCOES_TELEFONE );
