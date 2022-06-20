@@ -1,8 +1,8 @@
 package com.rafaoli.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-import com.rafaoli.dbsimulator.DBSimulator;
 import com.rafaoli.domain.Pessoa;
 import com.rafaoli.repository.repositoryImpl.PessoaRepositoryImpl;
 
@@ -14,31 +14,23 @@ public class PessoaService {
 		this.pessoaRepositoryImpl = pessoaRepositoryImpl;
 	}
 	
-	public void listarContatos() {
-		List<Pessoa> listaContatos = pessoaRepositoryImpl.listarContatos();
-		listaContatos
-		.stream()
-		.sorted()
-		.forEach(System.out::println);
+	public List<Pessoa> listarContatos() {
+		List<Pessoa> listaContatos = pessoaRepositoryImpl.listarContatos();		
+		
+		return  listaContatos.stream().sorted().collect( Collectors.toList() );
 	}
 	
 	public void inserirContato( Pessoa p_pessoa ) {
 		pessoaRepositoryImpl.inserirContato( p_pessoa );
 	}
 	
-	public void removerContato( Pessoa p_pessoa ) {
-		pessoaRepositoryImpl.deletarContato( p_pessoa );
+	public void deletarContato( int p_id ) {
+		pessoaRepositoryImpl.deletarContato( p_id );
 	}
 	
-	public void alterarContato( Pessoa p_pessoa  ) {
-		int indexPessoa = 0; 
-		DBSimulator.LISTA_DE_PESSOA.forEach( pessoa ->{
-			if( pessoa.getRg().equals( p_pessoa.getRg() ) ) {
-				// TO DO 
- 			}			
-		});
+	public void alterarContato( Pessoa p_pessoa, int p_index ) {
 		
-		pessoaRepositoryImpl.alterarContato(p_pessoa, indexPessoa);
+		pessoaRepositoryImpl.alterarContato( p_pessoa, p_index );
 		
 	}
 }

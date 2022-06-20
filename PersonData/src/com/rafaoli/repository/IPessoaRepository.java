@@ -8,9 +8,9 @@ public interface IPessoaRepository {
 	
 	void inserirContato( Pessoa p_pessoa );
 	
-	void deletarContato( Pessoa p_pessoa );
+	void deletarContato( int p_id );
 	
-	void alterarContato( Pessoa p_pessoa, int p_index );
+	void alterarContato( Pessoa p_pessoa, int p_id );
 	
 	List<Pessoa> listarContatos();
 }
