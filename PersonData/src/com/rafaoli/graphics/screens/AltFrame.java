@@ -1,8 +1,6 @@
 package com.rafaoli.graphics.screens;
 
-import java.awt.BorderLayout;
 import java.awt.event.WindowEvent;
-import java.util.HashMap;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -15,7 +13,6 @@ import javax.swing.border.EmptyBorder;
 
 import com.rafaoli.domain.Pessoa;
 import com.rafaoli.graphics.AppScreen;
-import com.rafaoli.graphics.actionListeners.AddBtnAddInternalListener;
 import com.rafaoli.graphics.actionListeners.AddBtnCancelListener;
 import com.rafaoli.graphics.actionListeners.AltBtnInternalListener;
 import com.rafaoli.service.PessoaService;

@@ -3,7 +3,6 @@ package com.rafaoli.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.rafaoli.dbsimulator.DBSimulator;
 import com.rafaoli.domain.Pessoa;
 import com.rafaoli.repository.repositoryImpl.PessoaRepositoryImpl;
 

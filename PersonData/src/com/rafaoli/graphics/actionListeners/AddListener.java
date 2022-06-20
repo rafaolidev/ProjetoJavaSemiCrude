@@ -3,7 +3,6 @@ package com.rafaoli.graphics.actionListeners;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import com.rafaoli.domain.Pessoa;
 import com.rafaoli.graphics.AppScreen;
 import com.rafaoli.graphics.screens.AddFrame;
 import com.rafaoli.service.PessoaService;
