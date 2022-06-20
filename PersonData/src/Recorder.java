@@ -12,6 +12,11 @@ public class Recorder {
 	
 	public static void main(String[]args) {
 		AppScreen appScreen = new AppScreen();
+		gerarMock();
+		appScreen.construirGUI();
+	}
+	
+	static void gerarMock() {
 		PessoaRepositoryImpl pessoaRepositoryImpl = new PessoaRepositoryImpl();
 		
 		PessoaService pessoaService = new PessoaService(pessoaRepositoryImpl);
@@ -50,8 +55,7 @@ public class Recorder {
 		p.setTelefone( telefoneMap );
 		p.setEmail(emailMap);
 				
-		pessoaService.inserirContato(p);		
-		appScreen.construirGUI();
+		pessoaService.inserirContato(p);	
 	}
 
 }
