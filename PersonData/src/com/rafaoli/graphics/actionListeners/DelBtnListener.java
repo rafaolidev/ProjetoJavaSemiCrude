@@ -18,8 +18,7 @@ public class DelBtnListener implements ActionListener {
 	}	
 	
 	@Override
-	public void actionPerformed(ActionEvent event) {
-		
+	public void actionPerformed(ActionEvent event) {		
 		pessoaService.deletarContato( this.index );	
 		appScreen.refreshJList();
 	}
@@ -31,7 +30,4 @@ public class DelBtnListener implements ActionListener {
 	public void setIndex(int index) {
 		this.index = index;
 	}
-	
-	
-
 }

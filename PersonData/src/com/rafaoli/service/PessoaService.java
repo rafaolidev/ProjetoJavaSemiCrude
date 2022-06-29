@@ -29,8 +29,6 @@ public class PessoaService {
 	}
 	
 	public void alterarContato( Pessoa p_pessoa, int p_index ) {
-		
-		pessoaRepositoryImpl.alterarContato( p_pessoa, p_index );
-		
+		pessoaRepositoryImpl.alterarContato( p_pessoa, p_index );		
 	}
 }
