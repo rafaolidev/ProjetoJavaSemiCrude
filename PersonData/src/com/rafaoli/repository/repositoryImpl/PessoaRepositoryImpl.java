@@ -15,7 +15,7 @@ public class PessoaRepositoryImpl implements IPessoaRepository{
 
 	@Override
 	public void deletarContato( int p_id) {
-		DBSimulator.LISTA_DE_PESSOA.remove(p_id);		
+		DBSimulator.LISTA_DE_PESSOA.remove( p_id );		
 	}
 
 	@Override
@@ -27,5 +27,4 @@ public class PessoaRepositoryImpl implements IPessoaRepository{
 	public List<Pessoa> listarContatos() {				
 		return DBSimulator.LISTA_DE_PESSOA;
 	}
-
 }

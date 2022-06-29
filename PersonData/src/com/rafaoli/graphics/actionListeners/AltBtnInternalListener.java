@@ -17,8 +17,6 @@ public class AltBtnInternalListener implements ActionListener {
 	private AltFrame altFrame;
 	private AppScreen appScreen;
 	
-	private int index;
-	
 	public AltBtnInternalListener( PessoaService p_pessoaService, AltFrame p_altFrame, AppScreen p_appScreen ) {
 		pessoaService = p_pessoaService;
 		altFrame = p_altFrame;
@@ -69,7 +67,4 @@ public class AltBtnInternalListener implements ActionListener {
 		altFrame.getAppScreen().refreshJList();
 		altFrame.encerrarJFrame();
 	}
-	
-
-
 }

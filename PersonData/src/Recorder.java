@@ -23,10 +23,10 @@ public class Recorder {
 		
 		Pessoa p = new Pessoa();
 		
-		p.setNome("contatoTeste");
-		p.setRg("55555555");
+		p.setNome( "Mock" );
+		p.setRg( "55555555" );
 		p.setData_nascimento( LocalDate.now() );
-		String email = "contatoTeste@teste.com";
+		String email = "Mock@mock.dev";
 		String opcaoEmail = "Principal";
 		HashMap<String, String> emailMap = new HashMap<String,String>();		
 
@@ -42,20 +42,20 @@ public class Recorder {
 		String opcaoEndereco = "Residencial";
 		HashMap<Endereco, String> enderecoMap = new HashMap<Endereco,String>();		
 		
-		endereco.setLogradouro("Rua das Flores");
-		endereco.setBairro("Guarujá");
-		endereco.setCep("029990-922");
-		endereco.setCidade("São Paulo");
-		endereco.setComplemento("Não há");
-		endereco.setNumero("888");
+		endereco.setLogradouro( "Rua das Flores" );
+		endereco.setBairro( "Guarujá" );
+		endereco.setCep( "029990-922" );
+		endereco.setCidade( "São Paulo" );
+		endereco.setComplemento( "Não há" );
+		endereco.setNumero( "888" );
 		
-		enderecoMap.put(endereco, opcaoEndereco);
+		enderecoMap.put( endereco, opcaoEndereco );
 		
-		p.setEndereco(enderecoMap);
+		p.setEndereco( enderecoMap );
 		p.setTelefone( telefoneMap );
-		p.setEmail(emailMap);
+		p.setEmail( emailMap );
 				
-		pessoaService.inserirContato(p);	
+		pessoaService.inserirContato( p );	
 	}
 
 }

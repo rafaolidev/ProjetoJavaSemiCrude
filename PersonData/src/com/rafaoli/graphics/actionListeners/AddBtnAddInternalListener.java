@@ -66,6 +66,4 @@ public class AddBtnAddInternalListener implements ActionListener {
 		addFrame.getAppScreen().refreshJList();
 		addFrame.encerrarJFrame();
 	}
-	
-
 }

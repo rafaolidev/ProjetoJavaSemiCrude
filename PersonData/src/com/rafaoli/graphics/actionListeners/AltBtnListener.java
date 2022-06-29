@@ -10,13 +10,11 @@ import com.rafaoli.service.PessoaService;
 
 public class AltBtnListener implements ActionListener{
 
-	private PessoaService pessoaService;
 	private AppScreen appScreen;
 	private int index;
 	private AltFrame altFrame;
 
 	public AltBtnListener( PessoaService p_pessoaService, AppScreen p_appScreen ) {
-		pessoaService = p_pessoaService;
 		appScreen = p_appScreen;
 		altFrame = new AltFrame( p_pessoaService, p_appScreen );
 	}
@@ -28,14 +26,15 @@ public class AltBtnListener implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent event) {
-		gerarGUI();
-		
+		gerarGUI();		
 		Pessoa pessoaAtualizada = recuperarPessoa();
 		altFrame.carregarDados( pessoaAtualizada );
 	}
+	
 	public Pessoa recuperarPessoa() {
 		return appScreen.getJlistaContato().getSelectedValue();		
 	}
+	
 	public int getIndex() {
 		return index;
 	}
@@ -43,6 +42,4 @@ public class AltBtnListener implements ActionListener{
 	public void setIndex(int index) {
 		this.index = index;
 	}
-	
-
 }
